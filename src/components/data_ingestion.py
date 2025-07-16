@@ -9,6 +9,9 @@ from dataclasses import dataclass
 
 from src.components.data_transformation import datatransformation
 from src.components.data_transformation import DataTransformationConfig
+
+from src.components.model_trainer import ModelTrainerconfig
+from src.components.model_trainer import modeltrainer
 @dataclass
 class dataingestionconfig:
     train_data_path: str=os.path.join('artifacts',"train.csv")
@@ -53,4 +56,7 @@ if __name__=="__main__":
     datatransform=datatransformation()
     train_arr,test_arr,_=datatransform.Initiate_data_transform(train_data,test_data)
     
+    Modeltrainer=modeltrainer()
+    r2score=Modeltrainer.initiate_model_trainer(train_arr,test_arr)
     
+    print(f"model accuracy score is: {r2score}")
